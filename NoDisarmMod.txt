@@ -1,0 +1,35 @@
+"Games"
+{
+	"csgo"
+	{
+		"Addresses"
+		{
+			"NoDisarmMod"
+			{
+				"signature"	"NoDisarmMod"
+			}
+		}
+		"Offsets"
+		{
+			"NoDisarmMod_Start"
+			{
+				"linux"		"3910"
+				"windows"	"1347"
+			}
+			"NoDisarmMod_End"
+			{
+				"linux"		"4193"
+				"windows"	"1691‬"
+			}
+		}
+		"Signatures"
+		{
+			"NoDisarmMod"
+			{
+				"library"	"server"
+				"linux"		"\x55\x89\xE5\x57\x56\x53\x81\xEC\x48\x06\x00\x00"
+				"windows"	"\x55\x8B\xEC\x83\xE4\xF8\x81\xEC\x20\x06\x00\x00\x56\x8B\xC1\x57"
+			}
+		}
+	}
+}

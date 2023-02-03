@@ -1,0 +1,16 @@
+"Games"
+{
+    "csgo"
+    {
+        "Signatures"
+        {
+            
+            "CItem_Healthshot::CompleteUse"
+            {
+                "library"	"server"
+                "linux"		"\x55\x89\xE5\x57\x56\x53\x83\xEC\x38\x8B\x5D\x0C\x53"
+                "windows"	"\x55\x8B\xEC\x83\xEC\x08\x53\x8B\x5D\x08\x56\x57\x51"
+            }
+        }
+    }
+}

@@ -1,0 +1,102 @@
+"Games"
+{
+
+/*
+	DHooks2 = https://github.com/peace-maker/DHooks2/tags
+	Updated 30.3.2021
+*/
+
+
+
+	"csgo"
+	{
+
+		"Functions"
+		{
+			"CreateEndMatchMapGroupVoteOptions_function"
+			{
+				"signature"		"CreateEndMatchMapGroupVoteOptions"
+				"callconv"		"thiscall"
+				"return"		"void"
+				"this"			"ignore"
+			}
+
+			"characterscenes_function"
+			{
+				"signature"		"characterscenes"
+				"callconv"		"thiscall"
+				"return"		"void"
+				"this"			"ignore"
+			}
+		}
+
+
+		"Signatures"
+		{
+			/*
+				These two callbacks below, locate under cs_gamerules, void CCSGameRules::GoToIntermission( bool bAbortedMatch )
+				 6F 20 69+aGoingToIntermi db 'Going to intermission...',0Ah,0
+			*/
+
+
+
+
+			// void CCSGameRules::CreateEndMatchMapGroupVoteOptions( void )
+			"CreateEndMatchMapGroupVoteOptions"
+			{
+				"library"	"server"
+				"windows"	"\x55\x8B\xEC\x81\xEC\x30\x01\x00\x00\x53\x8B\xD9" // mapvote
+				"linux"		"\x55\x89\xE5\x57\x56\x53\x81\xEC\x4C\x01\x00\x00\x8B\x45\x08\x89\x85\xB8\xFE\xFF\xFF" // mapvote
+				
+				/*
+					Windows
+					55 8B EC 81 EC 30 01 00 00 53 8B D9 
+					\x55\x8B\xEC\x81\xEC\x30\x01\x00\x00\x53\x8B\xD9
+
+					Linux
+					55 89 E5 57 56 53 81 EC 4C 01 00 00 8B 45 08 89 85 B8 FE FF FF 
+					\x55\x89\xE5\x57\x56\x53\x81\xEC\x4C\x01\x00\x00\x8B\x45\x08\x89\x85\xB8\xFE\xFF\xFF
+					
+					IDA, search string:
+							 ; char aCcsgamerulesCr[]
+					.rodata:011E3898 43 43 53 47 61 6D 65 52 75 6C+aCcsgamerulesCr db 'CCSGameRules::CreateEndMatchMapGroupVoteOptions',0
+					.rodata:011E3898 65 73 3A 3A 43 72 65 61 74 65+                                        ; DATA XREF: CreateEndMatchMapGroupVoteOptions_sub_B15410+6AE↑o
+					.rodata:011E3898 45 6E 64 4D 61 74 63 68 4D 61+                                        ; CreateEndMatchMapGroupVoteOptions_sub_B15410+6CE↑o
+				*/
+				
+			}
+
+
+
+
+
+
+			// endmatch characterscenes. I don't know how this callback is builded. I just called it "characterscenes"
+			// somethign to do with 'logic_choreographed_scene'
+
+			"characterscenes"
+			{
+				"library"	"server"
+				"windows"	"\x55\x8B\xEC\x81\xEC\x8C\x01\x00\x00" // Scene
+				"linux"		"\x55\x89\xE5\x57\x56\x53\x81\xEC\x9C\x01\x00\x00\x89\x85\x74\xFE\xFF\xFF" // Scene
+				
+				/*
+					Windows
+					55 8B EC 81 EC 8C 01 00 00 
+					\x55\x8B\xEC\x81\xEC\x8C\x01\x00\x00
+					
+					
+					Linux
+					55 89 E5 57 56 53 81 EC 9C 01 00 00 89 85 74 FE FF FF 
+					\x55\x89\xE5\x57\x56\x53\x81\xEC\x9C\x01\x00\x00\x89\x85\x74\xFE\xFF\xFF
+					
+					IDA, search string:
+					68 6F 72+aLogicChoreogra db 'logic_choreographed_scene',0
+
+					 ; char aResourceCharac[]
+					.rodata:011E4364 72 65 73 6F 75 72 63 65 2F 63+aResourceCharac db 'resource/characterscenes/%d.res',0
+				*/
+			}
+		}
+	}
+}
