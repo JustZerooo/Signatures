@@ -19,7 +19,7 @@
 			"NoDisarmMod_End"
 			{
 				"linux"		"4193"
-				"windows"	"1691‬"
+				"windows"	"1691"
 			}
 		}
 		"Signatures"
